@@ -1,24 +1,51 @@
 radio.onReceivedNumber(function (receivedNumber) {
-    music.startMelody(music.builtInMelody(Melodies.Chase), MelodyOptions.Once)
+    basic.showLeds(`
+        . # # . .
+        . # . # .
+        . # # . .
+        . # . # .
+        . # # # .
+        `)
+    basic.showLeds(`
+        . . # # #
+        . . # . .
+        . . # # #
+        . . # . .
+        . . # # #
+        `)
+    basic.showLeds(`
+        # # # # #
+        . . # . .
+        . . # . .
+        . . # . .
+        . . # . .
+        `)
+    basic.showLeds(`
+        . # # . .
+        # . . # .
+        # # # # .
+        # . . # .
+        # . . # .
+        `)
+    basic.clearScreen()
+    basic.showString("MOZEM ?")
 })
 input.onButtonPressed(Button.A, function () {
-    radio.sendString("MOZES")
+    radio.sendNumber(1)
+})
+input.onLogoEvent(TouchButtonEvent.Touched, function () {
+    radio.sendString("NEVIZVANAJ")
 })
 radio.onReceivedString(function (receivedString) {
-    soundExpression.giggle.play()
     basic.showString(receivedString)
+    basic.showString("?")
+    basic.clearScreen()
+    basic.showString("MOZEM ?")
 })
 input.onButtonPressed(Button.B, function () {
-    radio.sendString("NEVIZVANAJ")
+    radio.sendString("NEMOZES")
 })
 radio.setGroup(1)
 basic.forever(function () {
     music.setVolume(255)
-    basic.showLeds(`
-        . . # . .
-        . # # # .
-        # # # # #
-        # # # # #
-        . . # . .
-        `)
 })
